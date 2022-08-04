@@ -1,0 +1,47 @@
+/*
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+}
+
+p{
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 700px;
+    font-size: 20px;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+.list-to-add{
+    width: 600px;
+    height: 65px;
+    border: none;
+    resize: none
+}
+
+.addToListButton{
+    border: none;
+    background-color: white;
+    padding: 24.7px;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
