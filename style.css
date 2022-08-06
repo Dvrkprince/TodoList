@@ -31,7 +31,7 @@ h1{
 /*text area*/
 .list-to-add{
     width: 600px;
-    height: 65px;
+    height: 80px;
     border: none;
     resize: none;
     color: #132743;
@@ -41,12 +41,13 @@ h1{
 .addToListButton{
     border: none;
     background-color: white;
-    padding: 24.7px;
+    padding: 32.3px;
     cursor:pointer;
 }
 .addToListButton:hover{
-    color:beige;
-    background-color: green;
+    color:rgb(0, 0, 0);
+    font-weight: 700;
+    background-color: yellow;
 }
 .formContainer{
     display: flex;
@@ -54,3 +55,40 @@ h1{
     justify-content: center;
 }
 
+/*the created container that holds the p and button*/
+.listContainer{
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/*the created P element using js*/
+.newList{
+    min-width: 620px;
+    max-width: 620px;
+    background-color: rgb(224, 224, 224);
+    justify-content:flex-start;
+    min-height: 100px;
+    padding:0;
+    margin: 0;
+}
+
+/**/
+.completedButton{
+    padding-top: 3.2em;
+    padding-bottom: 3.2em;
+    padding-right: .2em;
+    padding-left: .2em;
+    margin: 0;   
+    border: none; 
+    cursor: pointer;
+}
+
+.completedButton:hover{
+    font-weight: 700;
+    color:beige;
+    background-color: green;
+}
