@@ -5,7 +5,11 @@ let i = 0;
 //Addbutton
 addButton.addEventListener("click", function(){
     console.log(listToAdd.innerText);//testing purposes
-
+    
+    //checks if text area is empty
+    if(listToAdd.value.trim().length < 1){
+      return;
+    }
     //created div element store the new p and button
     let listContainer = document.createElement('div');
     listContainer.className = "listContainer";
