@@ -1,11 +1,13 @@
 const addButton = document.getElementsByClassName("addToListButton")[0];
-const listToAdd = document.getElementsByClassName("list-to-add")[0];
+let listToAdd = document.getElementsByClassName("list-to-add")[0];
+
+//to keep track of lists
 let i = 0;
 
 //Addbutton
 addButton.addEventListener("click", function(){
     console.log(listToAdd.innerText);//testing purposes
-    
+
     //checks if text area is empty
     if(listToAdd.value.trim().length < 1){
       return;
@@ -28,8 +30,14 @@ addButton.addEventListener("click", function(){
     btn.className = "completedButton";
     btn.innerHTML = "Completed";
     document.getElementsByClassName("listContainer")[i].appendChild(btn); 
+    i++;
 
-    i++;   
+    //list completed
+    btn.addEventListener("click", function(){
+      let toRemove = document.getElementsByClassName("completedButton")[0].parentNode;
+      toRemove.remove();
+      i--;
+    });
   });
 
 
