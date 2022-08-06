@@ -24,21 +24,30 @@ p{
 h1{
     display: flex;
     justify-content: center;
+    color: #385170;
+    margin: 1em;
 }
 
+/*text area*/
 .list-to-add{
     width: 600px;
     height: 65px;
     border: none;
-    resize: none
+    resize: none;
+    color: #132743;
 }
 
+/*Add Button*/
 .addToListButton{
     border: none;
     background-color: white;
     padding: 24.7px;
+    cursor:pointer;
 }
-
+.addToListButton:hover{
+    color:beige;
+    background-color: green;
+}
 .formContainer{
     display: flex;
     flex-direction: row;
