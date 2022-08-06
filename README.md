@@ -1,3 +1,3 @@
 # TodoList
 
-My attmpt at making a todolist from scratch 
+My attempt at making a todolist from scratch 
