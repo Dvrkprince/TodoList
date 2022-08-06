@@ -34,7 +34,7 @@ addButton.addEventListener("click", function(){
 
     //list completed
     btn.addEventListener("click", function(){
-      let toRemove = document.getElementsByClassName("completedButton")[0].parentNode;
+      let toRemove = btn.parentNode;
       toRemove.remove();
       i--;
     });
