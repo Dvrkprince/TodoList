@@ -77,18 +77,31 @@ h1{
 }
 
 /**/
-.completedButton{
+.listButtons{
     padding-top: 3.2em;
     padding-bottom: 3.2em;
     padding-right: .2em;
     padding-left: .2em;
+    min-width: 80px;
     margin: 0;   
-    border: none; 
+    border:#132743;
     cursor: pointer;
 }
 
-.completedButton:hover{
+.removeButton:hover{
     font-weight: 700;
     color:beige;
     background-color: green;
+}
+
+.lineThroughButton:hover{
+    font-weight: 700;
+    color:beige;
+    background-color: blue;
+}
+
+.editButton:hover{
+    font-weight: 700;
+    color:beige;
+    background-color: rgb(154, 228, 250);
 }
