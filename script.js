@@ -27,10 +27,24 @@ addButton.addEventListener("click", function(){
 
     //created Completed button
     let btn = document.createElement("button");
-    btn.className = "completedButton";
-    btn.innerHTML = "Completed";
+    btn.className = "listButtons removeButton";
+    btn.innerHTML = "Remove";
     document.getElementsByClassName("listContainer")[i].appendChild(btn); 
+    
+    //scratch off button
+    let lineThroughButton = document.createElement("button");
+    lineThroughButton.className = "listButtons lineThroughButton";
+    lineThroughButton.innerHTML = "Scratch Off";
+    document.getElementsByClassName("listContainer")[i].appendChild(lineThroughButton);
+
+    //edit button
+    let editButton = document.createElement("button");
+    editButton.className = "listButtons editButton";
+    editButton.innerHTML = "Edit";
+    document.getElementsByClassName("listContainer")[i].appendChild(editButton);    
+
     i++;
+
 
     //list completed
     btn.addEventListener("click", function(){
@@ -38,6 +52,31 @@ addButton.addEventListener("click", function(){
       toRemove.remove();
       i--;
     });
+
+    //line Through
+    lineThroughButton.addEventListener("click", function(){
+      let lineThroughText = lineThroughButton.parentNode.children[0];
+      if(lineThroughText.style.textDecorationLine !== "line-through"){
+        lineThroughText.style.textDecorationLine = "line-through";
+      }else{
+        lineThroughText.style.textDecorationLine = "none";
+      }
+    });
+
+    //edit list
+    editButton.addEventListener("click", function(event){
+      let editText = editButton.parentNode.children[0];
+      if(editButton.innerHTML !== "Edit"){
+        editText.setAttribute("contenteditable",false);
+        editButton.innerHTML = "Edit";
+      }else{
+        editText.setAttribute("contenteditable",true);
+        editButton.innerHTML = "Stop Edit";    
+      }      
+    }); 
   });
 
 
+
+
+   
