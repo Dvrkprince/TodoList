@@ -47,7 +47,7 @@ h1{
 .addToListButton:hover{
     color:rgb(0, 0, 0);
     font-weight: 700;
-    background-color: yellow;
+    background-color: green;
 }
 .formContainer{
     display: flex;
@@ -91,7 +91,7 @@ h1{
 .removeButton:hover{
     font-weight: 700;
     color:beige;
-    background-color: green;
+    background-color: brown;
 }
 
 .lineThroughButton:hover{
@@ -104,4 +104,9 @@ h1{
     font-weight: 700;
     color:beige;
     background-color: rgb(154, 228, 250);
+}
+
+.noEditChecked:hover{
+    background-color: red;
+    color:beige;
 }
