@@ -1,5 +1,12 @@
 const addButton = document.getElementsByClassName("addToListButton")[0];
-let listToAdd = document.getElementsByClassName("list-to-add")[0];
+let listToAdd   = document.getElementsByClassName("list-to-add")[0];
+
+//Icons
+let trashIcon    = `<i class="fas fa-trash"></i>`;
+let checkIcon    = `<i class="fas fa-check"></i`;
+let uncheckIcon  = `<i class="fas fa-undo"></i>`;
+let editIcon     =  `<i class="fas fa-edit"></i>`;
+let stopEditIcon = `<i class="fas fa-stop"></i>`;
 
 //to keep track of lists
 let i = 0;
@@ -25,22 +32,22 @@ addButton.addEventListener("click", function(){
     //attach the list to the html div of lists
     document.getElementsByClassName("listContainer")[i].appendChild(list);
 
-    //created Completed button
+    //Remove button
     let btn = document.createElement("button");
     btn.className = "listButtons removeButton";
-    btn.innerHTML = "Remove";
+    btn.innerHTML = trashIcon;
     document.getElementsByClassName("listContainer")[i].appendChild(btn); 
     
-    //scratch off button
+    //check button
     let lineThroughButton = document.createElement("button");
     lineThroughButton.className = "listButtons lineThroughButton";
-    lineThroughButton.innerHTML = "Scratch Off";
+    lineThroughButton.innerHTML = checkIcon;
     document.getElementsByClassName("listContainer")[i].appendChild(lineThroughButton);
 
     //edit button
     let editButton = document.createElement("button");
     editButton.className = "listButtons editButton";
-    editButton.innerHTML = "Edit";
+    editButton.innerHTML = editIcon;
     document.getElementsByClassName("listContainer")[i].appendChild(editButton);    
 
     i++;
@@ -58,25 +65,30 @@ addButton.addEventListener("click", function(){
       let lineThroughText = lineThroughButton.parentNode.children[0];
       if(lineThroughText.style.textDecorationLine !== "line-through"){
         lineThroughText.style.textDecorationLine = "line-through";
+        lineThroughButton.innerHTML =  uncheckIcon;
+        lineThroughButton.parentNode.children[3].className = "listButtons editButton noEditChecked"; 
       }else{
         lineThroughText.style.textDecorationLine = "none";
+        lineThroughButton.innerHTML =  checkIcon;
+        lineThroughButton.parentNode.children[3].className = "listButtons editButton";
       }
     });
 
     //edit list
     editButton.addEventListener("click", function(event){
       let editText = editButton.parentNode.children[0];
-      if(editButton.innerHTML !== "Edit"){
-        editText.setAttribute("contenteditable",false);
-        editButton.innerHTML = "Edit";
-      }else{
+      if(editText.style.textDecorationLine === "line-through"){
+        return;
+      }
+      if(!(editText.isContentEditable)){//by default it is not  ediitable
         editText.setAttribute("contenteditable",true);
-        editButton.innerHTML = "Stop Edit";    
+        editButton.innerHTML =  stopEditIcon; 
+      }else{
+        editText.setAttribute("contenteditable",false);
+        editButton.innerHTML = editIcon;    
       }      
     }); 
   });
 
 
 
-
-   
