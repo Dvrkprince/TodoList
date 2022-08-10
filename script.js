@@ -1,5 +1,9 @@
-const addButton = document.getElementsByClassName("addToListButton")[0];
-let listToAdd   = document.getElementsByClassName("list-to-add")[0];
+//Text area to write list
+let   listToAdd   = document.getElementById("list-to-add");
+//Button to add list to todo list
+const addButton   = document.getElementById("addToListButton");
+//Div that holds all the todoLists
+let listsHolder = document.getElementById("lists-added");
 
 //Icons
 let trashIcon    = `<i class="fas fa-trash"></i>`;
@@ -19,10 +23,11 @@ addButton.addEventListener("click", function(){
     if(listToAdd.value.trim().length < 1){
       return;
     }
+
     //created div element store the new p and button
     let listContainer = document.createElement('div');
     listContainer.className = "listContainer";
-    document.getElementsByClassName("lists-added")[0].appendChild(listContainer);
+    listsHolder.appendChild(listContainer);
 
     //create an html element to store the list text
     let list = document.createElement('p');
@@ -53,42 +58,114 @@ addButton.addEventListener("click", function(){
     i++;
 
 
-    //list completed
+    //list remove
     btn.addEventListener("click", function(){
       let toRemove = btn.parentNode;
       toRemove.remove();
       i--;
+      localStorage.setItem('recordedLists',listsHolder.innerHTML);
     });
 
     //line Through
     lineThroughButton.addEventListener("click", function(){
+      //stores the text in the paragraph
       let lineThroughText = lineThroughButton.parentNode.children[0];
+      //checks if text is not scratched off
       if(lineThroughText.style.textDecorationLine !== "line-through"){
         lineThroughText.style.textDecorationLine = "line-through";
         lineThroughButton.innerHTML =  uncheckIcon;
-        lineThroughButton.parentNode.children[3].className = "listButtons editButton noEditChecked"; 
+        lineThroughButton.parentNode.children[3].className = "listButtons editButton noEditChecked";
       }else{
         lineThroughText.style.textDecorationLine = "none";
         lineThroughButton.innerHTML =  checkIcon;
         lineThroughButton.parentNode.children[3].className = "listButtons editButton";
       }
+      localStorage.setItem('recordedLists',listsHolder.innerHTML);
     });
 
     //edit list
     editButton.addEventListener("click", function(event){
+      //stores the text in the paragraph
       let editText = editButton.parentNode.children[0];
+      //checks if text is scratched off, not editable
       if(editText.style.textDecorationLine === "line-through"){
+        localStorage.setItem('recordedLists',listsHolder.innerHTML);
         return;
       }
-      if(!(editText.isContentEditable)){//by default it is not  ediitable
+      if(!(editText.isContentEditable)){//by default it is not ediitable
         editText.setAttribute("contenteditable",true);
         editButton.innerHTML =  stopEditIcon; 
       }else{
         editText.setAttribute("contenteditable",false);
         editButton.innerHTML = editIcon;    
-      }      
+      }
+      localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
+    localStorage.setItem('recordedLists',listsHolder.innerHTML);
   });
 
+//localStorage.clear(); //testing purposes
+  
+let savedLists = localStorage.getItem('recordedLists');
 
+// checksfor saved lists and updates
+if (savedLists) {
+ 	listsHolder.innerHTML = savedLists;
+  i = document.getElementsByClassName("listContainer").length;
 
+  //remove button
+  let removeCollection = document.getElementsByClassName("removeButton");
+  for(let z = 0; z < removeCollection.length; z++){
+    let btn = removeCollection[z];
+    btn.addEventListener("click", function(){
+      btn.parentNode.remove();
+      i--;
+    localStorage.setItem('recordedLists',listsHolder.innerHTML);  
+    });
+  } 
+
+  //line Through  
+  let lineThroughCollection = document.getElementsByClassName("lineThroughButton");
+  for(let z = 0; z < lineThroughCollection.length; z++){
+    let btn = lineThroughCollection[z];
+    btn.addEventListener("click", function(){
+      //stores the text in the paragraph
+      let lineThroughText = btn.parentNode.children[0];
+      //checks if text is not scratched off
+      if(lineThroughText.style.textDecorationLine !== "line-through"){
+        lineThroughText.style.textDecorationLine = "line-through";
+        btn.innerHTML =  uncheckIcon;
+        btn.parentNode.children[3].className = "listButtons editButton noEditChecked";
+      }else{
+        lineThroughText.style.textDecorationLine = "none";
+        btn.innerHTML =  checkIcon;
+        btn.parentNode.children[3].className = "listButtons editButton";
+      }
+      localStorage.setItem('recordedLists',listsHolder.innerHTML);
+    });   
+  }
+  
+  //edit button
+  let editCollection = document.getElementsByClassName("editButton");
+  for(let z = 0; z < editCollection.length; z++){
+    let btn = editCollection[z];
+    btn.addEventListener("click", function(event){
+      //stores the text in the paragraph
+      let editText = btn.parentNode.children[0];
+      //checks if text is scratched off, not editable
+      if(editText.style.textDecorationLine === "line-through"){
+        localStorage.setItem('recordedLists',listsHolder.innerHTML);
+        return;
+      }
+      if(!(editText.isContentEditable)){//by default it is not ediitable
+        editText.setAttribute("contenteditable",true);
+        btn.innerHTML =  stopEditIcon; 
+      }else{
+        editText.setAttribute("contenteditable",false);
+        btn.innerHTML = editIcon;    
+      }
+      localStorage.setItem('recordedLists',listsHolder.innerHTML);    
+    }); 
+  }
+  localStorage.setItem('recordedLists',listsHolder.innerHTML);
+}
