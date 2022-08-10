@@ -70,6 +70,10 @@ addButton.addEventListener("click", function(){
     lineThroughButton.addEventListener("click", function(){
       //stores the text in the paragraph
       let lineThroughText = lineThroughButton.parentNode.children[0];
+      //checks if the user is currently edditing
+      if(lineThroughText.isContentEditable){
+        return;
+      }      
       //checks if text is not scratched off
       if(lineThroughText.style.textDecorationLine !== "line-through"){
         lineThroughText.style.textDecorationLine = "line-through";
@@ -95,9 +99,11 @@ addButton.addEventListener("click", function(){
       if(!(editText.isContentEditable)){//by default it is not ediitable
         editText.setAttribute("contenteditable",true);
         editButton.innerHTML =  stopEditIcon; 
+        editButton.parentNode.children[2].className = "listButtons lineThroughButton noLineThroughButton";
       }else{
         editText.setAttribute("contenteditable",false);
-        editButton.innerHTML = editIcon;    
+        editButton.innerHTML = editIcon;   
+        editButton.parentNode.children[2].className = "listButtons lineThroughButton";
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
@@ -131,6 +137,10 @@ if (savedLists) {
     btn.addEventListener("click", function(){
       //stores the text in the paragraph
       let lineThroughText = btn.parentNode.children[0];
+      //checks if the user is currently edditing
+      if(lineThroughText.isContentEditable){
+        return;
+      }
       //checks if text is not scratched off
       if(lineThroughText.style.textDecorationLine !== "line-through"){
         lineThroughText.style.textDecorationLine = "line-through";
@@ -160,9 +170,11 @@ if (savedLists) {
       if(!(editText.isContentEditable)){//by default it is not ediitable
         editText.setAttribute("contenteditable",true);
         btn.innerHTML =  stopEditIcon; 
+        btn.parentNode.children[2].className = "listButtons lineThroughButton noLineThroughButton";        
       }else{
         editText.setAttribute("contenteditable",false);
-        btn.innerHTML = editIcon;    
+        btn.innerHTML = editIcon; 
+        btn.parentNode.children[2].className = "listButtons lineThroughButton";        
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
