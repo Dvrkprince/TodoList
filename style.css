@@ -29,7 +29,7 @@ h1{
 }
 
 /*text area*/
-.list-to-add{
+#list-to-add{
     width: 600px;
     height: 80px;
     border: none;
@@ -38,13 +38,14 @@ h1{
 }
 
 /*Add Button*/
-.addToListButton{
+#addToListButton{
     border: none;
     background-color: white;
     padding: 32.3px;
     cursor:pointer;
 }
-.addToListButton:hover{
+
+#addToListButton:hover{
     color:rgb(0, 0, 0);
     font-weight: 700;
     background-color: green;
