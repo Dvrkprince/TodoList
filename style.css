@@ -31,17 +31,21 @@ h1{
 /*text area*/
 #list-to-add{
     width: 600px;
+    font-size: 15px;
+    padding: 10px;
     height: 80px;
     border: none;
     resize: none;
-    color: #132743;
+    color: black;
+    font-weight: 700;
+    background-color: #f6d8ac;
 }
 
 /*Add Button*/
 #addToListButton{
     border: none;
     background-color: white;
-    padding: 32.3px;
+    padding: 42.4px;
     cursor:pointer;
 }
 
@@ -68,19 +72,20 @@ h1{
 
 /*the created P element using js*/
 .newList{
-    min-width: 620px;
-    max-width: 620px;
+    width: 620px;
     background-color: rgb(224, 224, 224);
     justify-content:flex-start;
     min-height: 100px;
-    padding:0;
+    padding:10px;
     margin: 0;
+    display: inline-block;
+    word-break: break-word;
 }
 
 /**/
 .listButtons{
-    padding-top: 3.2em;
-    padding-bottom: 3.2em;
+    padding-top: 3.9em;
+    padding-bottom: 3.9em;
     padding-right: .2em;
     padding-left: .2em;
     min-width: 80px;
@@ -115,4 +120,51 @@ h1{
 .noLineThroughButton:hover{
     background-color: red;
     color:beige;   
+}
+
+/*screens width less than 900*/
+@media (max-width:900px) {
+    #list-to-add{
+        width:400px;   
+    }
+    .newList{
+        width: 500px;
+        height: 120px;
+    }
+    .listButtons{
+        padding-top: 4.7em;
+        padding-bottom: 4.7em;      
+    }
+}
+
+@media (max-width:700px) {
+    #list-to-add{
+        width:300px;   
+    }
+    .newList{
+        width: 400px;
+        height: 150px;
+    }
+    .listButtons{
+        padding: 5.8em .2em; 
+    }
+}
+
+@media (max-width:670px) {
+    #list-to-add{
+        width:300px;   
+    }
+    .newList{
+        width: 400px;
+        height: 150px;
+    }
+    .listContainer{
+        display:block;
+    }
+     .buttonContainer{
+        display: block; 
+    }   
+    .listButtons{
+        padding: 2em 4.75em; 
+    }  
 }
