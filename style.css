@@ -157,6 +157,7 @@ h1{
     .newList{
         width: 400px;
         height: 150px;
+        height: auto;
     }
     .listContainer{
         display:block;
@@ -176,10 +177,8 @@ h1{
         justify-content: center;
     }
     .newList{
-        display: flex; 
-        justify-content: center;        
+        display: flex;    
         width: 300px;
-        height: 200px;
     }
     .listContainer{
         margin-top: 2em;
