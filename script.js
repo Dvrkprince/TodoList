@@ -29,8 +29,18 @@ addButton.addEventListener("click", function(){
     listContainer.className = "listContainer";
     listsHolder.appendChild(listContainer);
 
+    //to hold the buttons
+    let buttonContainer =  document.createElement('div');
+    buttonContainer.className = "buttonContainer";
+
     //create an html element to store the list text
     let list = document.createElement('p');
+    //set character limit
+    list.setAttribute("onkeypress", "return (this.innerText.length < 280)");
+    list.addEventListener("paste",function(event){
+      doPaste(event,list);
+    });
+    
     list.className = "newList";
     //take the text entered by the user and store it into a list
     list.textContent = listToAdd.value;
@@ -91,6 +101,7 @@ addButton.addEventListener("click", function(){
     editButton.addEventListener("click", function(event){
       //stores the text in the paragraph
       let editText = editButton.parentNode.children[0];
+      console.log(editText);
       //checks if text is scratched off, not editable
       if(editText.style.textDecorationLine === "line-through"){
         localStorage.setItem('recordedLists',listsHolder.innerHTML);
@@ -100,16 +111,46 @@ addButton.addEventListener("click", function(){
         editText.setAttribute("contenteditable",true);
         editButton.innerHTML =  stopEditIcon; 
         editButton.parentNode.children[2].className = "listButtons lineThroughButton noLineThroughButton";
+        editText.focus();
       }else{
         editText.setAttribute("contenteditable",false);
         editButton.innerHTML = editIcon;   
         editButton.parentNode.children[2].className = "listButtons lineThroughButton";
+        editText.blur();
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
     localStorage.setItem('recordedLists',listsHolder.innerHTML);
   });
 
+function doPaste(event, list){
+  let pastedText = "";
+
+  //Reference:
+  //https://stackoverflow.com/questions/11943924/javascript-removing-spaces-on-paste
+  if (event.clipboardData && event.clipboardData.getData)
+  {
+    pastedText = event.clipboardData.getData('text/plain');
+  }
+  else if (window.clipboardData && window.clipboardData.getData)
+  {// IE
+    pastedText = window.clipboardData.getData('Text');
+  }
+
+  //to see if the code should be pasted
+  let totalLength = list.textContent.length + pastedText.length;
+
+  if(totalLength  > 280 ){
+    event.preventDefault();
+    return;
+  }else{
+    return;
+  }
+
+  
+}  
+
+//-------------------local storage section of code------------------\\
 //localStorage.clear(); //testing purposes
   
 let savedLists = localStorage.getItem('recordedLists');
@@ -161,7 +202,8 @@ if (savedLists) {
     let btn = editCollection[z];
     btn.addEventListener("click", function(event){
       //stores the text in the paragraph
-      let editText = btn.parentNode.children[0];
+      let editText = btn.parentNode.children[0];  
+      console.log(editText);
       //checks if text is scratched off, not editable
       if(editText.style.textDecorationLine === "line-through"){
         localStorage.setItem('recordedLists',listsHolder.innerHTML);
@@ -171,10 +213,12 @@ if (savedLists) {
         editText.setAttribute("contenteditable",true);
         btn.innerHTML =  stopEditIcon; 
         btn.parentNode.children[2].className = "listButtons lineThroughButton noLineThroughButton";        
+        editText.focus();
       }else{
         editText.setAttribute("contenteditable",false);
         btn.innerHTML = editIcon; 
-        btn.parentNode.children[2].className = "listButtons lineThroughButton";        
+        btn.parentNode.children[2].className = "listButtons lineThroughButton";     
+        editText.blur();   
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
