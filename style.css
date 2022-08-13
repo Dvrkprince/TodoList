@@ -137,7 +137,7 @@ h1{
     }
 }
 
-@media (max-width:700px) {
+@media (max-width:760px) {
     #list-to-add{
         width:300px;   
     }
