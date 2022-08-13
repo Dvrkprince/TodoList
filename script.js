@@ -93,10 +93,16 @@ addButton.addEventListener("click", function(){
         lineThroughText.style.textDecorationLine = "line-through";
         lineThroughButton.innerHTML =  uncheckIcon;
         lineThroughButton.parentNode.children[2].className  = "listButtons editButton noEditChecked";
+        //edit color of check button
+        lineThroughButton.style.backgroundColor = "blue";
       }else{
         lineThroughText.style.textDecorationLine = "none";
         lineThroughButton.innerHTML =  checkIcon;
         lineThroughButton.parentNode.children[2].className  = "listButtons editButton";
+        //edit color of check button
+        //lineThroughButton.className = "listButtons lineThroughButton";
+        lineThroughButton.style.backgroundColor = "";
+
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);
     });
@@ -116,11 +122,13 @@ addButton.addEventListener("click", function(){
         editButton.innerHTML =  stopEditIcon; 
         editButton.parentNode.children[1].className = "listButtons lineThroughButton noLineThroughButton";
         editText.focus();
+        editButton.style.backgroundColor= "rgb(154, 228, 250)";
       }else{
         editText.setAttribute("contenteditable",false);
         editButton.innerHTML = editIcon;   
         editButton.parentNode.children[1].className = "listButtons lineThroughButton";
         editText.blur();
+        editButton.style.backgroundColor= "";
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
@@ -191,10 +199,14 @@ if (savedLists) {
         lineThroughText.style.textDecorationLine = "line-through";
         btn.innerHTML =  uncheckIcon;
         btn.parentNode.children[2].className = "listButtons editButton noEditChecked";
+        //edit color of check button
+        btn.style.backgroundColor = "blue";        
       }else{
         lineThroughText.style.textDecorationLine = "none";
         btn.innerHTML =  checkIcon;
         btn.parentNode.children[2].className = "listButtons editButton";
+        //edit color of check button    
+        btn.style.backgroundColor = "";
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);
     });   
@@ -218,11 +230,13 @@ if (savedLists) {
         btn.innerHTML =  stopEditIcon; 
         btn.parentNode.children[1].className = "listButtons lineThroughButton noLineThroughButton";        
         editText.focus();
+        btn.style.backgroundColor= "rgb(154, 228, 250)";
       }else{
         editText.setAttribute("contenteditable",false);
         btn.innerHTML = editIcon; 
         btn.parentNode.children[1].className = "listButtons lineThroughButton";     
         editText.blur();   
+        btn.style.backgroundColor = "";
       }
       localStorage.setItem('recordedLists',listsHolder.innerHTML);    
     }); 
